@@ -1,0 +1,24 @@
+.custom-navbar {
+    background-image: url('/src/assets/nav1.jpg');/* Specify the path to your background image */
+    background-size: cover;
+    background-position: center;
+    border-bottom: 4px solid white; /* White border at the bottom */
+    height: 80px; /* Increase the height as needed */
+  }
+  
+  /* Adjusting the brand (logo) size */
+  .custom-navbar .navbar-brand {
+    font-size: 24px;
+    font-weight: bold;
+    color: white; /* Change the color of the brand text */
+  }
+  
+  /* Styling the links */
+  .custom-navbar .nav-link {
+    color: white !important; /* Change link color */
+  }
+  
+  .custom-navbar .nav-link:hover {
+    color: lightgray !important; /* Change link color on hover */
+  }
+  

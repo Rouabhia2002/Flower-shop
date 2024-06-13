@@ -1,0 +1,92 @@
+.about {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start; /* Align items at the start */
+    padding: 20px;
+    height: 100%;
+    flex-wrap: wrap; /* Allows flex items to wrap onto multiple lines */
+  }
+  
+  .text {
+    flex: 1;
+    margin-top: 60px;
+    padding-right: 20px; /* Add some spacing between the text and the images */
+    text-align: center; /* Center the text */
+  }
+  
+  .pics {
+    flex: 1;
+    display: flex;
+    gap: 20px; /* Add some spacing between the images */
+    align-items: flex-start; /* Align images to the start */
+  }
+  
+  /* Styles for .rounded-top-div and .rounded2-top-div */
+  .rounded-top-div,
+  .rounded2-top-div {
+    width: 100%; /* Make images full width */
+    background-size: cover; /* Ensure the image covers the div */
+    background-position: center; /* Center the image */
+    border-top-left-radius: 50%;
+    border-top-right-radius: 50%;
+    overflow: hidden; /* Ensure the corners are clipped */
+  }
+  
+  .rounded-top-div {
+    height: 350px; /* Set a larger height for the first image */
+    background-image: url('/src/assets/Chelsea\ Lynn\ \(chelsealynndore\).jpeg'); /* Path to your background image */
+    align-self: flex-end; /* Align the first image to the bottom */
+    background-size: cover;
+
+  }
+  
+  .rounded2-top-div {
+    height: 250px; /* Set a smaller height for the second image */
+    background-image: url('/src/assets/Une\ Femme\ Tient\ Un\ Bouquet\ Festif\ Avec\ Des\ Fleurs\ De\ Chrysathème\ Dans\ Ses\ Mains_\ _\ Photo\ Gratuite.jpeg'); /* Path to your background image */
+    align-self: flex-end; /* Align the second image to the bottom */
+    background-size: cover;
+
+  }
+  
+  /* Responsive styles */
+  @media (max-width: 768px) {
+    .about {
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    .text {
+      padding-right: 0;
+      padding-bottom: 20px;
+      text-align: center; /* Center text on smaller screens */
+    }
+  
+    .pics {
+      flex-direction: column; /* Stack images vertically on smaller screens */
+      justify-content: center;
+      gap: 10px; /* Adjust spacing between the images */
+    }
+  
+    .rounded-top-div,
+    .rounded2-top-div {
+      width: 100%; /* Adjust width for smaller screens */
+      height: auto; /* Let height adjust based on aspect ratio */
+    }
+  
+    .rounded2-top-div {
+      height: auto; /* Let height adjust based on aspect ratio */
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .pics {
+      flex-direction: column; /* Stack images vertically again on very small screens */
+      gap: 20px; /* Adjust spacing between the images */
+    }
+  
+    .rounded-top-div,
+    .rounded2-top-div {
+      width: 100%; /* Make images full width */
+    }
+  }
+  

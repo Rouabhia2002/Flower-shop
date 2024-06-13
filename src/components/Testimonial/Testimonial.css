@@ -1,0 +1,83 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+.testimonial-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 600px; /* Adjust this value to make it larger */
+  padding: 30px;
+  background-color: beige !important;
+}
+
+.text h3 {
+  margin: 0;
+  font-size: 1.5em;
+}
+
+.text h1 {
+  margin: 10px 0;
+  font-size: 2.5em;
+}
+
+.text h2 {
+  margin: 10px 0;
+  font-size: 1.2em;
+  color: #666;
+}
+
+.boxx {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 20px;
+  flex-wrap: wrap;
+}
+
+.box {
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  padding: 20px;
+  text-align: center;
+  width: 300px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.stars {
+  margin-bottom: 10px;
+}
+
+.box p {
+  font-size: 1em;
+  color: #333;
+}
+
+.smallbox {
+  display: flex;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.img {
+  width: 50px;
+  height: 50px;
+  background-color: #ddd;
+  background-image: url('/src/assets/oooooooo-split\ \(1\).jpg'); /* Path to your image */
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.smallbox h3 {
+  margin: 0;
+  font-size: 1.1em;
+}
+
+.smallbox h5 {
+  margin: 0;
+  font-size: 0.9em;
+  color: #999;
+}

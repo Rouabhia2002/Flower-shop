@@ -1,0 +1,55 @@
+/* Hero.css */
+.hero {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  min-height: 600px; /* Adjust this value to make it larger */
+  background-image: url('/src/assets/love3.jpg'); /* Path to your image */
+  background-size: cover; /* Ensures the image covers the entire hero section */
+  background-position: center; /* Centers the image */
+  background-repeat: no-repeat; /* Prevents the image from repeating */
+  position: relative; /* Required for the overlay */
+  color: white; /* Sets text color to white */
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5); /* Semi-transparent black overlay */
+  z-index: 1; /* Places the overlay below the text */
+}
+
+.hero h5,
+.hero h1,
+.hero p,
+.hero .btn-primary {
+  position: relative;
+  z-index: 2; /* Ensures text is above the overlay */
+}
+
+.hero h5 {
+  margin: 10px 0;
+  font-size: 1.2rem;
+}
+
+.hero h1 {
+  margin: 20px 0;
+  font-size: 2.5rem;
+}
+
+.hero p {
+  margin: 20px 0;
+  font-size: 1rem;
+}
+
+.hero .btn-primary {
+  margin-top: 20px;
+  padding: 10px 20px;
+  font-size: 1rem;
+}

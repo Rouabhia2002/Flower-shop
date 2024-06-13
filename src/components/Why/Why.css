@@ -1,0 +1,41 @@
+/* styles.css */
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .faq-container {
+    max-width: 800px;
+    margin: 50px auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .faq-item {
+    margin-bottom: 20px;
+  }
+  
+  .faq-item input[type="checkbox"] {
+    display: none;
+  }
+  
+  .faq-item label {
+    display: block;
+    cursor: pointer;
+    font-size: 18px;
+    margin-bottom: 10px;
+  }
+  
+  .faq-answer {
+    display: none;
+    padding-left: 20px;
+  }
+  
+  .faq-item input[type="checkbox"]:checked ~ .faq-answer {
+    display: block;
+  }
+  
