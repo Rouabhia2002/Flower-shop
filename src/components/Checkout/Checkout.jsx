@@ -1,4 +1,6 @@
 import React, { useContext, useState } from 'react';
+import axios from 'axios'; // Import Axios
+
 import { SelectedItemContext } from '../../context/SelectedItemContext.jsx';
 import './Checkout.css';
 
@@ -8,10 +10,39 @@ const Checkout = () => {
   const [address, setAddress] = useState('');
   const [phone, setPhone] = useState('');
 
-  const handleCheckout = (e) => {
+  const handleCheckout = async (e) => {
     e.preventDefault();
-    // Handle order processing here
-    alert('Order placed successfully!');
+
+    const order = {
+      name,
+      address,
+      phone,
+      items: CartItem.map(item => ({
+        title: item.title,
+        quantity: item.quantity,
+        price: item.price
+      }))
+    };
+
+    console.log(order);
+
+    try {
+      const response = await axios.post('http://localhost:5000/api/orders', order);
+      console.log('Response:', response.data); // Log the response from backend
+
+      if (response.status === 200) {
+        alert('Order placed successfully!');
+        setName('');
+        setAddress('');
+        setPhone('');
+      } else {
+        console.error('Failed to place order:', response.data);
+        alert('Failed to place order');
+      }
+    } catch (error) {
+      console.error('Error placing order:', error);
+      alert('Failed to place order');
+    }
   };
 
   return (

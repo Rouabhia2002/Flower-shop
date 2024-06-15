@@ -4,7 +4,7 @@ import './Opencart.css'; // Ensure this file exists
 import { Button } from 'react-bootstrap';
 
 const OpenCart = () => {
-  const { selectedItem } = useContext(SelectedItemContext);
+  const { selectedItem , CartItem} = useContext(SelectedItemContext);
 
 
   const { addToCart } = useContext(SelectedItemContext);

@@ -46,6 +46,9 @@ export const SelectedItemProvider = ({ children }) => {
     });
   };
 
+
+ 
+
   const calculateTotalPrice = () => {
     return CartItem.reduce((total, item) => total + (item.price * item.quantity), 0);
   };
