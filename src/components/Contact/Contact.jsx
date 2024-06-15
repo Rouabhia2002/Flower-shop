@@ -27,10 +27,10 @@ const Contact = () => {
         <h1>Get In Touch With Us</h1>
         <p>Share some details here. This is a flexible section where you can share anything you want. It could be details or some information.</p>
         <h3>Address</h3>
-        <p>2972 Westheimer Rd. Santa Ana, Illinois 85486</p>
+        <p>1245 logement Alger babzouar</p>
         <div className='contact-info'>
           <h3>Phone</h3>
-          <span>(+91) 987 654 321</span>
+          <span>(+213) 555859300</span>
 
           <h3>Email</h3>
           <span>info@contact.com</span>

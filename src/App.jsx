@@ -6,6 +6,8 @@ import ContactPage from '../src/pages/ContactPage.jsx';
 import ShopPage from '../src/pages/ShopPage.jsx';
 import { SelectedItemProvider } from './context/SelectedItemContext.jsx';
 import OpencartPage from '../src/pages/OpencartPage.jsx';
+import CheckoutPage from '../src/pages/CheckoutPage.jsx'; // Ensure this is the correct path
+
 
 function App() {
   return (
@@ -17,6 +19,7 @@ function App() {
           <Route path="/contact" element={<ContactPage />} />
           <Route path="/shop" element={<ShopPage />} />
           <Route path="/opencart" element={<OpencartPage />} /> 
+          <Route path="/checkout" element={<CheckoutPage/>} /> 
         </Routes>
       </Router>
     </SelectedItemProvider>
