@@ -1,6 +1,6 @@
 // src/pages/Shop/Shop.jsx
 import React from 'react';
-import { storeProducts } from '../../data';
+import { storeProducts } from '../../data/data';
 import Cart from '../../components/Cart/Cart';
 import './Shop.css'; // Import the CSS for the shop layout
 

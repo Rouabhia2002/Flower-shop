@@ -9,7 +9,13 @@ const Contact = () => {
   const { register, handleSubmit, reset } = useForm();
 
   const onSubmit = (data) => {
-    emailjs.send('service_6dmgc4o', 'template_ohk53os', data, 'kTaQ8s5HqwiKSJ34N')
+    const templateParams = {
+      from_name: `${data.firstName} ${data.lastName}`,
+      user_email: data.email,
+      message: data.comment,
+    };
+
+    emailjs.send('service_6dmgc4o', 'template_ohk53os', templateParams, 'kTaQ8s5HqwiKSJ34N')
       .then((response) => {
         console.log('SUCCESS!', response.status, response.text);
         reset();

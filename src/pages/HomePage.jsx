@@ -7,7 +7,6 @@ import Testimonial from '../components/Testimonial/Testimonial.jsx';
 import Contact from '../components/Contact/Contact.jsx';
 import Shop from '../components/Shop/Shop.jsx';
 import Footer from '../components/Footer/Footer.jsx';
-
 const HomePage = () => {
   return (
     <>

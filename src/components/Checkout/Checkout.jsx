@@ -23,7 +23,7 @@ const Checkout = () => {
         price: item.price
       }))
     };
-
+    
     console.log(order);
 
     try {
