@@ -12,7 +12,6 @@ const port = process.env.PORT || 5000;
 app.use(cors());
 app.use(express.json());
 
-
 // MongoDB Connection
 const uri = process.env.MONGODB_URI || "your_mongo_db_connection_string";
 mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true });
@@ -21,9 +20,9 @@ connection.once('open', () => {
   console.log("MongoDB database connection established successfully");
 });
 
-
 // Define Schema and Model
-const Schema = mongoose.Schema;
+const { Schema } = mongoose;
+
 const orderSchema = new Schema({
   name: { type: String, required: true },
   address: { type: String, required: true },
@@ -39,29 +38,7 @@ const orderSchema = new Schema({
 
 const Order = mongoose.model('Order', orderSchema);
 
-// Routes
-app.post('/api/orders', (req, res) => {
-  console.log('Received order request:', req.body); // Log the request body received
-  
-  const { name, address, phone, items } = req.body;
 
-  const newOrder = new Order({
-    name,
-    address,
-    phone,
-    items
-  });
-
-  newOrder.save()
-    .then(() => {
-      console.log('Order saved successfully');
-      res.status(200).json({ message: 'Order placed successfully' });
-    })
-    .catch(err => {
-      console.error('Error saving order:', err);
-      res.status(500).json({ message: 'Failed to place order' });
-    });
-});
 
 const userSchema = new Schema({
   username: { type: String, required: true },
@@ -107,19 +84,24 @@ app.post('/api/login', async (req, res) => {
 
 // Register route
 app.post('/api/register', async (req, res) => {
+  const { username, password } = req.body;
+
   try {
-    // Save user to MongoDB (already implemented)
+    const existingUser = await User.findOne({ username });
+    if (existingUser) {
+      return res.status(400).json({ message: 'Username already exists' });
+    }
 
-    // Respond with a token upon successful registration
-    const token = jwt.sign({ id: user._id, username: user.username }, 'your_jwt_secret', { expiresIn: '1h' });
-    res.status(200).json({ token });
+    const hashedPassword = await bcrypt.hash(password, 10);
+    const newUser = new User({ username, password: hashedPassword });
+    await newUser.save();
 
+    const token = jwt.sign({ id: newUser._id, username: newUser.username }, 'your_jwt_secret', { expiresIn: '1h' });
+    res.status(201).json({ token });
   } catch (error) {
-    console.error('Registration failed:', error);
-    res.status(400).json({ message: 'Registration failed' }); // Ensure proper error response
+    res.status(500).json({ message: 'Server error' });
   }
 });
-
 
 // Middleware to verify token
 const verifyToken = (req, res, next) => {
@@ -148,12 +130,31 @@ app.get('/api/admin/orders', verifyToken, async (req, res) => {
   }
 });
 
-// 
+// Route to handle placing orders (unprotected for demonstration)
+app.post('/api/orders', (req, res) => {
+  console.log('Received order request:', req.body);
+
+  const { name, address, phone, items } = req.body;
+
+  const newOrder = new Order({
+    name,
+    address,
+    phone,
+    items
+  });
+
+  newOrder.save()
+    .then(() => {
+      console.log('Order saved successfully');
+      res.status(200).json({ message: 'Order placed successfully' });
+    })
+    .catch(err => {
+      console.error('Error saving order:', err);
+      res.status(500).json({ message: 'Failed to place order' });
+    });
+});
 
 // Start server
 app.listen(port, () => {
   console.log(`Server is running on port: ${port}`);
 });
-
-
-

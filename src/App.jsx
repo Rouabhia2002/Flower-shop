@@ -35,6 +35,8 @@ function App() {
             <Route path="/login" element={<Login/>} />
             <Route path="/admin" element={<ProtectedRoute element={AdminOrders} />} />
             <Route path="/checkout" element={<CheckoutPage/>} /> 
+            <Route path="/register" element={<RegisterPage/>} /> 
+            
             </Routes>
         </Router>
       </SelectedItemProvider>
