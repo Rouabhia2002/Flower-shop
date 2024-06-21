@@ -1,22 +1,32 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import axios from 'axios';
-import './AdminOrders.css'; // Create this CSS file for styling
+import { AuthContext } from '../../context/AuthContext';
+import { useNavigate } from 'react-router-dom';
+import './AdminOrders.css';
 
 const AdminOrders = () => {
   const [orders, setOrders] = useState([]);
+  const { user, authToken } = useContext(AuthContext);
+  const navigate = useNavigate();
 
   useEffect(() => {
-    const fetchOrders = async () => {
-      try {
-        const response = await axios.get('http://localhost:5000/api/admin/orders');
-        setOrders(response.data);
-      } catch (error) {
-        console.error('Error fetching orders:', error);
-      }
-    };
+    if (!user) {
+      navigate('/login');
+    } else {
+      const fetchOrders = async () => {
+        try {
+          const response = await axios.get('http://localhost:5000/api/admin/orders', {
+            headers: { Authorization: `Bearer ${authToken}` }
+          });
+          setOrders(response.data);
+        } catch (error) {
+          console.error('Error fetching orders:', error);
+        }
+      };
 
-    fetchOrders();
-  }, []);
+      fetchOrders();
+    }
+  }, [user, authToken, navigate]);
 
   return (
     <div className="admin-container">
