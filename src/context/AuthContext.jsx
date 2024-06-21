@@ -1,6 +1,6 @@
 import React, { createContext, useState, useEffect } from 'react';
 import axios from 'axios';
-
+import {jwtDecode} from "jwt-decode";
 export const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
@@ -10,7 +10,6 @@ export const AuthProvider = ({ children }) => {
   useEffect(() => {
     const decodeToken = async () => {
       if (authToken) {
-        const { default: jwtDecode } = await import('jwt-decode');
         axios.defaults.headers.common['Authorization'] = `Bearer ${authToken}`;
         setUser(jwtDecode(authToken));
       }
