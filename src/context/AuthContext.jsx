@@ -17,14 +17,19 @@ export const AuthProvider = ({ children }) => {
     decodeToken();
   }, [authToken]);
 
+  
   const login = async (username, password) => {
-    const response = await axios.post('http://localhost:5000/api/login', { username, password });
-    const { default: jwtDecode } = await import('jwt-decode');
-    setAuthToken(response.data.token);
-    localStorage.setItem('authToken', response.data.token);
-    setUser(jwtDecode(response.data.token));
+    try {
+      const response = await axios.post('http://localhost:5000/api/login', { username, password });
+      setAuthToken(response.data.token);
+      localStorage.setItem('authToken', response.data.token);
+      setUser(jwtDecode(response.data.token));
+    } catch (error) {
+      console.error('Login failed:', error);
+      throw new Error('Login failed: Invalid credentials');
+    }
   };
-
+  
 
 
 

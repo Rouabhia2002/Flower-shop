@@ -7,6 +7,7 @@ const CheckoutPage = () => {
     <>
       <Navbarr />
       <Checkout/>
+      
     </>
   );
 };

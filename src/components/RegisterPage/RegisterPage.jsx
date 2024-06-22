@@ -13,7 +13,7 @@ const RegisterPage = () => {
     e.preventDefault();
     try {
       await register(username, password);
-      navigate('/admin'); // Redirect to admin page after successful registration
+      navigate('/login'); // Redirect to admin page after successful registration
     } catch (error) {
       console.error('Registration failed:', error.message);
       alert('Registration failed: ' + error.message); // Display appropriate error message
