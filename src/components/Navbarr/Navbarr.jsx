@@ -8,6 +8,10 @@ import Stack from 'react-bootstrap/Stack';
 import { FaShoppingCart } from 'react-icons/fa';
 import { CiCircleRemove } from 'react-icons/ci';
 import { SelectedItemContext } from '../../context/SelectedItemContext'; // Adjust path as necessary
+import { AuthContext } from '../../context/AuthContext';
+import './Navbarr.css';
+import Button from '@mui/material/Button';
+
 
 function Navbarr() {
   const [show, setShow] = useState(false);
@@ -15,6 +19,8 @@ function Navbarr() {
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+
+  const { user , logout } = useContext(AuthContext); // Access user from AuthContext
 
   return (
     <Navbar collapseOnSelect expand="lg" className="custom-navbar">
@@ -29,10 +35,27 @@ function Navbarr() {
             <Nav.Link as={NavLink} to="/contact">Contact</Nav.Link>
           </Nav>
           <Nav className="ms-auto">
-            <Nav.Link onClick={handleShow} style={{ fontSize: '24px' }}>
-              <FaShoppingCart />
+            <div className="user">
+              {user && (
+              <Nav.Link as={NavLink} to="/shop">
+                <Button variant="outlined" color="error">welcome {user.username}</Button>
+              </Nav.Link>
+            )}
+            </div>
+        
+
+            
+            <Nav.Link onClick={handleShow} style={{ fontSize: '24px', marginTop: '-4px' }}>
+  <FaShoppingCart />
             </Nav.Link>
+
+        
+
           </Nav>
+
+          <Button variant="outlined" style={{ marginRight: '1px', fontSize: '14px' }} onClick={logout}>
+              Logout
+            </Button>
         </Navbar.Collapse>
       </Container>
 

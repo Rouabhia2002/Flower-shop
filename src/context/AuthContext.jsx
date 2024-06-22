@@ -3,10 +3,11 @@ import axios from 'axios';
 import {jwtDecode} from "jwt-decode";
 export const AuthContext = createContext();
 
-export const AuthProvider = ({ children }) => {
+export const AuthProvider = ({ children, navigate }) => {
   const [authToken, setAuthToken] = useState(localStorage.getItem('authToken'));
   const [user, setUser] = useState(null);
 
+  
   useEffect(() => {
     const decodeToken = async () => {
       if (authToken) {
@@ -17,7 +18,7 @@ export const AuthProvider = ({ children }) => {
     decodeToken();
   }, [authToken]);
 
-  
+
   const login = async (username, password) => {
     try {
       const response = await axios.post('http://localhost:5000/api/login', { username, password });
@@ -52,10 +53,13 @@ export const AuthProvider = ({ children }) => {
     setAuthToken(null);
     setUser(null);
     localStorage.removeItem('authToken');
+    navigate('/login');
+
+
   };
 
   return (
-    <AuthContext.Provider value={{ authToken, user, login, logout , register}}>
+    <AuthContext.Provider value={{ authToken, user, login, logout , register, logout}}>
       {children}
     </AuthContext.Provider>
   );
