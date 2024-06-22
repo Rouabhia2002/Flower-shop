@@ -1,28 +1,28 @@
 import React, { useContext } from 'react';
-import { SelectedItemContext } from '../../context/SelectedItemContext'; // Adjust path as necessary
-import './Opencart.css'; // Ensure this file exists
+import { SelectedItemContext } from '../../context/SelectedItemContext';
 import { Button } from 'react-bootstrap';
+import './Opencart.css';
 
 const OpenCart = () => {
-  const { selectedItem , CartItem} = useContext(SelectedItemContext);
-
-
-  const { addToCart } = useContext(SelectedItemContext);
-  const { minusToCart } = useContext(SelectedItemContext);
+  const { selectedItem, addToCart, minusToCart, CartItem } = useContext(SelectedItemContext);
 
   const handleAddToCart = () => {
     addToCart(selectedItem.id);
   };
 
   const pluSoneToCart = () => {
-    addOneToCart(selectedItem.id);
+    addToCart(selectedItem.id); // Assuming addToCart already handles incrementing quantity
   };
 
   const minusSoneToCart = () => {
     minusToCart(selectedItem.id);
   };
-  
+
   if (!selectedItem) return null;
+
+  // Find the quantity of the selected item in CartItem array
+  const selectedCartItem = CartItem.find(item => item.id === selectedItem.id);
+  const quantityInCart = selectedCartItem ? selectedCartItem.quantity : 0;
 
   return (
     <div className='opencart'>
@@ -40,17 +40,14 @@ const OpenCart = () => {
         </ul>
         <h3>${selectedItem.price}</h3>
       </div>
-      <div className=' d-flex flex-column'>
-      <Button variant="primary"   onClick={handleAddToCart} >ADD TO CART</Button>
-      <div className='flex-row'>
-         <Button variant="primary"  onClick={handleAddToCart} >+</Button>
-         <Button variant="primary"  onClick={minusSoneToCart} >-</Button>
+      <div className='d-flex flex-column'>
+        <Button variant="primary" onClick={handleAddToCart}>ADD TO CART</Button>
+        <div className='flex-row'>
+          <Button variant="primary" onClick={pluSoneToCart}>+</Button>
+          <span>{quantityInCart}</span>
+          <Button variant="primary" onClick={minusSoneToCart}>-</Button>
+        </div>
       </div>
-
-     
-      </div>
-    
-
     </div>
   );
 };
